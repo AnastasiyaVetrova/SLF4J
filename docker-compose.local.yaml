@@ -1,0 +1,24 @@
+
+services:
+  db:
+    ports:
+      - "5432:5432"
+    image: postgres:latest
+    container_name: puppet-local-db
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+#    volumes:
+#      - db-data:/var/lib/postgresql/data
+    networks:
+      - a-tink-test
+    restart: no
+
+#volumes:
+#  db-data:
+
+networks:
+  a-tink-test:
+    external: false
+    driver: bridge
